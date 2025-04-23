@@ -1,0 +1,35 @@
+.log-container {
+  height: 500px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+}
+
+.log-list {
+  padding: 0;
+  list-style-type: none;
+}
+
+.log-item {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+.log-heading {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #007bff;
+}
+
+.no-logs-message {
+  color: #6c757d;
+  font-style: italic;
+}
+
+.button-container {
+  margin-bottom: 20px;
+}
