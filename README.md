@@ -17,6 +17,7 @@ The system is divided into four main components:
 
 The system is containerized using Docker to simplify deployment and scaling.
 
+![image alt](https://github.com/Nija89/Real-Time-Log-Monitoring-System/blob/main/high-level-diagram.png?raw=true)
 ---
 
 ## Features
