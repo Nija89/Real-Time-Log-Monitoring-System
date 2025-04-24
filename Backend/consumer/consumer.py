@@ -23,10 +23,12 @@ connection = pika.BlockingConnection(
 channel = connection.channel()
 channel.queue_declare(queue='logs', durable=True, arguments={'x-max-length': 1000})
 
+valid_log_levels = {'ERROR', 'CRITICAL'}
+
 def callback(ch, method, properties, body):
     log_message = body.decode()
     logLevel = json.loads(body.decode())
-    if logLevel["level"] == 'ERROR' or logLevel['level'] == 'CRITICAL':
+    if logLevel["level"] in valid_log_levels:
         for websocket in websocket_clients.copy():
             try:
                 asyncio.run(websocket.send_text(log_message))
