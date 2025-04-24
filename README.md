@@ -36,14 +36,13 @@ The system is containerized using Docker to simplify deployment and scaling.
 
 ### Step 1: Clone the Repository
     git clone https://github.com/Nija89/Real-Time-Log-Monitoring-System
-    
 
 ## step 2: Navigate to the Project Directory
     cd Real-Time-Log-Monitoring-System
-    
+
 ### Step 3: Build and Run with Docker Compose
     docker-compose up --build
-    
+
     This command will:
         1. Build the Docker images for the backend services (producer, consumer) and frontend.
         2. Start the services, including RabbitMQ, the producer, the consumer, and the frontend.
