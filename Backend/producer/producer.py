@@ -14,7 +14,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+connection = pika.BlockingConnection(
+    pika.ConnectionParameters( host='my-rabbit', port=5672, credentials=pika.PlainCredentials('guest', 'guest'))
+)
 channel = connection.channel()
 channel.queue_declare(queue='logs', durable=True, arguments={'x-max-length': 1000})
 
@@ -53,6 +55,9 @@ def generateLog():
         time_to_sleep = random.uniform(0.05, 0.1) 
         time.sleep(time_to_sleep)
 
+@app.get("/")
+def home():
+    return {'say': "Now in Home Page!"}
 
 @app.post("/startLogGeneration/")
 async def startLogGeneration():

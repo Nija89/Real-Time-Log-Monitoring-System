@@ -33,3 +33,20 @@
 .button-container {
   margin-bottom: 20px;
 }
+
+.socket-status {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.socket-status.connected {
+  color: green;
+}
+
+.socket-status.error {
+  color: red;
+}
+
+.socket-status.disconnected {
+  color: gray;
+}

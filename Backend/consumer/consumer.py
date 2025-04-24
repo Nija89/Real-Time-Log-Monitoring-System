@@ -16,7 +16,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+connection = pika.BlockingConnection(
+    pika.ConnectionParameters(host='rabbitmq', port=5672, credentials=pika.PlainCredentials('guest', 'guest'))
+)
+
 channel = connection.channel()
 channel.queue_declare(queue='logs', durable=True, arguments={'x-max-length': 1000})
 

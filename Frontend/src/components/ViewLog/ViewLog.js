@@ -4,12 +4,13 @@ import '../../App.css';
 export const ViewLog = () => {
     const [logs, setLogs] = useState([]);
     const logsContainerRef = useRef(null);
-
+    const [socketStatus, setSocketStatus] = useState('Disconnected');
     useEffect(() => {
-        const socket = new WebSocket("ws://localhost:8081/ws");
+        const socket = new WebSocket("ws://localhost:8001/ws");
 
         socket.onopen = () => {
             console.log("WebSocket Connected successfully!");
+            setSocketStatus('Connected');
         };
 
         socket.onmessage = (event) => {
@@ -23,10 +24,12 @@ export const ViewLog = () => {
 
         socket.onerror = (error) => {
             console.error("WebSocket Error:", error);
+            setSocketStatus('Error');
         };
 
         socket.onclose = () => {
             console.log("WebSocket Disconnected");
+            setSocketStatus('Disconnected');
         };
 
         return () => {
@@ -42,7 +45,7 @@ export const ViewLog = () => {
 
     const startGenerate = async () => {
         try {
-            const url = "http://localhost:8080/startLogGeneration";
+            const url = "http://localhost:8000/startLogGeneration/";
             const response = await fetch(url, {
                 method: "POST",
             });
@@ -60,7 +63,7 @@ export const ViewLog = () => {
 
     const stopGenerate = async () => {
         try {
-            const url = "http://localhost:8080/stopLogGeneration";
+            const url = "http://localhost:8000/stopLogGeneration";
             const response = await fetch(url, {
                 method: "POST",
             });
@@ -79,7 +82,13 @@ export const ViewLog = () => {
     return (
         <div className="container mt-4">
             <h1 className="log-heading text-center">Real-time Error and Critical Log Monitoring</h1>
-    
+            
+            <div className="text-center mb-4">
+                <span className={`socket-status ${socketStatus.toLowerCase()}`}>
+                    WebSocket Status: {socketStatus}
+                </span>
+            </div>
+            
             <div className="button-container text-center mb-4">
                 <button className="btn btn-primary mx-2" onClick={generateButton}>Generate</button>
                 <button className="btn btn-danger mx-2" onClick={stopButton}>Stop</button>
