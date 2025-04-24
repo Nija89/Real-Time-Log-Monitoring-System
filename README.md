@@ -35,15 +35,12 @@ The system is containerized using Docker to simplify deployment and scaling.
 - Docker installed on your computer.
 
 ### Step 1: Clone the Repository
-    ```sh 
     git clone https://github.com/Nija89/Real-Time-Log-Monitoring-System
 
 ## step 2: Navigate to the Project Directory
-    ```sh
     cd Real-Time-Log-Monitoring-System
 
 ### Step 3: Build and Run with Docker Compose
-    ```sh
     docker-compose up --build
 
     This command will:
